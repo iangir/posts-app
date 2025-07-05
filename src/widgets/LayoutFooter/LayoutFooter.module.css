@@ -1,0 +1,11 @@
+.layoutFooter {
+	padding: 1.5rem;
+	border-top: 1px solid var(--border);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	a {
+		color: var(--muted-foreground);
+	}
+}

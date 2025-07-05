@@ -1,0 +1,9 @@
+.mainLayout {
+	overflow: visible;
+	width: 100%;
+}
+
+.content {
+	margin: 0 auto;
+	max-width: var(--content-width);
+}
