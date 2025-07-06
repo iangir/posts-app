@@ -5,6 +5,8 @@
 	padding: 1rem;
 	margin-block: 1rem;
 
+	box-shadow: var(--shadow-sm);
+
 	h3 {
 		margin: 0 0 1.5rem;
 		padding: 0;

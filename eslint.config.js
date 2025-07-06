@@ -30,6 +30,14 @@ export default tseslint.config([
 		},
 		rules: {
 			'@typescript-eslint/consistent-type-definitions': 'off',
+			'@typescript-eslint/no-unused-vars": "error': [
+				'error',
+				{
+					argsIgnorePattern: '^_',
+					varsIgnorePattern: '^_',
+					caughtErrorsIgnorePattern: '^_',
+				},
+			],
 		},
 	},
 ]);
