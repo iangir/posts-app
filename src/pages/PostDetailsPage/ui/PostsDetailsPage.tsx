@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { api } from 'shared/api/api';
 import MainLayout from 'shared/layouts/MainLayout/MainLayout';
 import { Loader } from 'shared/ui/Loader/Loader';
-import { UserTabs } from 'widgets/UserTabs';
 
 type PostDetailsPageProps = {
 	className?: string;
