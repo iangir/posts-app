@@ -1,0 +1,19 @@
+.PostCard {
+	background-color: var(--card);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 1rem;
+	margin-block: 1rem;
+
+	box-shadow: var(--shadow-sm);
+
+	h3 {
+		margin: 0 0 1.5rem;
+		padding: 0;
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+	}
+}

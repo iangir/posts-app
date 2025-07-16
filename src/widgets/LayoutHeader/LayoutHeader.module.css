@@ -1,0 +1,34 @@
+.layoutHeader {
+	color: var(--foreground);
+	width: 100%;
+	height: var(--navbar-height);
+	background-color: var(--background-transparent);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	backdrop-filter: var(--backdrop-filter);
+	box-shadow: inset 0 -1px 0 0 var(--border);
+}
+
+.navbarContainer {
+	width: var(--content-width);
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.navbarList {
+	width: 100%;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 1rem;
+}

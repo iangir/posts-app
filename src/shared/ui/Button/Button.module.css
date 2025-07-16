@@ -1,0 +1,95 @@
+.Button {
+	font: var(--font-m);
+	background-color: var(--button-background);
+	color: var(--button-foreground);
+	padding: 0.25rem 0.75rem;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	white-space: nowrap;
+	cursor: pointer;
+
+	transition:
+		transform var(--transition),
+		background-color var(--transition);
+
+	&:hover {
+		background-color: var(--button-background-hover);
+	}
+
+	&:active {
+		transform: scale(0.9);
+	}
+}
+
+.clear {
+	border-color: transparent;
+	background: none;
+
+	&:is(:hover, :focus-visible) {
+		background-color: var(--button-background-hover);
+	}
+}
+
+.outline {
+	border: 1px solid var(--border);
+	background: none;
+}
+
+.icon {
+	width: 32px;
+	height: 32px;
+	padding: 4px;
+	border-color: transparent;
+	background: none;
+	align-self: center;
+	color: var(--button-foreground);
+
+	&:is(:hover, :focus-visible) {
+		background: var(--button-background-hover);
+	}
+}
+
+.green {
+	--button-background: var(--primary);
+	&:hover {
+		--button-background-hover: var(--primary-hover);
+	}
+}
+
+.red {
+	--button-background: var(--destructive);
+	&:hover {
+		--button-background-hover: var(--destructive-hover);
+	}
+}
+
+.m {
+	min-width: 7rem;
+}
+
+.l {
+	min-width: 9rem;
+}
+
+.s {
+	min-width: 5rem;
+}
+
+.allSpace {
+	width: 100%;
+
+	&:active {
+		transform: scale(0.96);
+	}
+}
+
+.disabled {
+	opacity: 0.8;
+	background-color: var(--muted);
+	color: var(--muted-foreground);
+	cursor: default;
+
+	&:is(:hover) {
+		background-color: var(--muted);
+	}
+}
