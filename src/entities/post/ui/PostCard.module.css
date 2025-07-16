@@ -1,19 +1,25 @@
 .PostCard {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 	background-color: var(--card);
 	border: 1px solid var(--border);
 	border-radius: var(--radius);
 	padding: 1rem;
-	margin-block: 1rem;
+	margin-bottom: 0.5rem;
 
 	box-shadow: var(--shadow-sm);
+}
 
-	h3 {
-		margin: 0 0 1.5rem;
-		padding: 0;
-	}
+.postTitle {
+	color: var(--chart-2);
+}
 
-	p {
-		margin: 0;
-		padding: 0;
+.commentsBtn {
+	width: fit-content;
+	display: flex;
+	gap: 0.25rem;
+	svg {
+		color: var(--card-foreground);
 	}
 }

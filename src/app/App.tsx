@@ -1,13 +1,6 @@
-import MainLayout from 'shared/layouts/MainLayout/MainLayout';
-import { PostList } from 'widgets/PostList/';
-import { postsArray } from './postsReqestMock';
-
+import { AppRouter } from './providers/router/AppRouter';
 function App() {
-	return (
-		<MainLayout>
-			<PostList posts={postsArray} />
-		</MainLayout>
-	);
+	return <AppRouter />;
 }
 
 export default App;

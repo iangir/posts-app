@@ -1,9 +1,4 @@
-export type Post = {
-	userId: number;
-	id: number;
-	title: string;
-	body: string;
-};
+import type { Post } from 'entities/post/model/types/post';
 
 export const postsArray: Post[] = [
 	{
@@ -157,3 +152,13 @@ export const postsArray: Post[] = [
 		body: 'ullam consequatur ut\nomnis quis sit vel consequuntur\nipsa eligendi ipsum molestiae et omnis error nostrum\nmolestiae illo tempore quia et distinctio',
 	},
 ];
+
+const fetchPostsMock = (): Promise<Post[]> => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(postsArray);
+		}, 1000);
+	});
+};
+
+export default fetchPostsMock;

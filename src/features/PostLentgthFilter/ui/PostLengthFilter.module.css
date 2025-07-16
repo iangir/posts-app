@@ -1,0 +1,17 @@
+.PostLengthFilter {
+	display: flex;
+	gap: 0.25rem;
+}
+
+.active {
+	background-color: var(--secondary-hover);
+	svg {
+		color: var(--primary);
+	}
+}
+
+.arrowDown {
+	svg {
+		transform: rotate(180deg);
+	}
+}
