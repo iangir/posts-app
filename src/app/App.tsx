@@ -1,13 +1,7 @@
-import MainLayout from 'shared/layouts/MainLayout/MainLayout';
-import { PostList } from 'widgets/PostList/';
-import { postsArray } from './postsReqestMock';
+import FeedPage from 'pages/FeedPage/ui/FeedPage';
 
 function App() {
-	return (
-		<MainLayout>
-			<PostList posts={postsArray} />
-		</MainLayout>
-	);
+	return <FeedPage />;
 }
 
 export default App;

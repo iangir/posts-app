@@ -1,0 +1,21 @@
+.Loader {
+	border-radius: 50%;
+	display: block;
+	position: relative;
+	box-sizing: border-box;
+	animation: rotation 3s linear infinite;
+	width: var(--loader-size-m);
+	height: var(--loader-size-m);
+	border: calc(var(--loader-size-m) * 0.1) dotted var(--primary);
+	margin-inline: auto;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

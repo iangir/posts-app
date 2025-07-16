@@ -1,30 +1,30 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, createContext, useContext } from 'react';
 import type { ReactNode } from 'react';
 import { Portal } from 'shared/lib/Portal/Portal';
 import { classNames } from 'shared/lib/classNames/classNames';
 import type { Mods } from 'shared/lib/classNames/classNames';
+import { Button, ButtonColorEnum, ButtonThemeEnum } from '../Button/Button';
+import Cross from 'shared/assets/icons/cross.svg';
 import cls from './Modal.module.css';
 
-type ModalProps = {
+export type ModalProps = {
 	className?: string;
 	children?: ReactNode;
 	isOpen?: boolean;
 	onClose?: () => void;
-	lazy?: boolean;
 };
+
+type ModalHeaderProps = {
+	closeButton?: boolean;
+} & React.PropsWithChildren;
 
 const ANIMATION_DELAY = 200;
 
-export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
-	const [isClosing, setIsClosing] = useState(false);
-	const [isMounted, setIsMounted] = useState(false);
-	const timerRef = useRef<NodeJS.Timeout>(undefined);
+const ModalContext = createContext({ onClose: () => {} });
 
-	useEffect(() => {
-		if (isOpen) {
-			setIsMounted(true);
-		}
-	}, [isOpen]);
+const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
+	const [isClosing, setIsClosing] = useState(false);
+	const timerRef = useRef<NodeJS.Timeout>(undefined);
 
 	const closeHandler = useCallback(() => {
 		if (onClose) {
@@ -67,16 +67,51 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
 
 	return (
 		<Portal>
-			<div className={classNames(cls.Modal, mods, [])}>
-				<div onClick={closeHandler} className={cls.overlay}>
-					<div
-						onClick={onContentClick}
-						className={classNames(cls.content, mods, [className])}
-					>
-						{children}
+			<ModalContext value={{ onClose: closeHandler }}>
+				<div className={classNames(cls.Modal, mods, [])}>
+					<div onClick={closeHandler} className={cls.overlay}>
+						<div
+							onClick={onContentClick}
+							className={classNames(cls.content, mods, [className])}
+						>
+							{children}
+						</div>
 					</div>
 				</div>
-			</div>
+			</ModalContext>
 		</Portal>
 	);
 };
+
+const ModalHeader = ({ children, closeButton }: ModalHeaderProps) => {
+	const { onClose } = useContext(ModalContext);
+	return (
+		<div className={cls.header}>
+			<h2 className={cls.headerTitle}>{children}</h2>
+			{closeButton && (
+				<Button
+					theme={ButtonThemeEnum.ICON}
+					color={ButtonColorEnum.RED}
+					onClick={onClose}
+					className={cls.closeButton}
+				>
+					<Cross />
+				</Button>
+			)}
+		</div>
+	);
+};
+
+const ModalBody = ({ children }: React.PropsWithChildren) => {
+	return <div className={cls.body}>{children}</div>;
+};
+
+const ModalFooter = ({ children }: React.PropsWithChildren) => {
+	return <div className={cls.footer}>{children}</div>;
+};
+
+Modal.Header = ModalHeader;
+Modal.Body = ModalBody;
+Modal.Footer = ModalFooter;
+
+export default Modal;

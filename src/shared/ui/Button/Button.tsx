@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, RefObject } from 'react';
+import { memo, type ButtonHTMLAttributes, type RefObject } from 'react';
 import type { Mods } from 'shared/lib/classNames/classNames';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Button.module.css';
