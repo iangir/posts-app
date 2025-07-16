@@ -1,12 +1,12 @@
 import { Loader } from 'shared/ui/Loader/Loader';
 
 type withLoadingProps = {
-	isLoading: boolean;
+	loading: boolean;
 };
 
 export function withLoading<T>(WrappedComponent: React.ComponentType<T>) {
 	return (props: T & withLoadingProps) => {
-		if (props.isLoading) {
+		if (props.loading) {
 			return <Loader />;
 		}
 		return <WrappedComponent {...props} />;

@@ -2,43 +2,37 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import MainLayout from 'shared/layouts/MainLayout/MainLayout';
 import { withLoading } from 'shared/lib/hoc/withLodaing';
 import { PostList } from 'widgets/PostList';
-import cls from './FeedPage.module.css';
 import { PostLengthFilter } from 'features/PostLentgthFilter';
 import { useEffect, useRef, useState } from 'react';
 import type { Post } from 'entities/post';
-import fetchPostsMock from 'app/postsReqestMock';
+import cls from './PostsPage.module.css';
+import { usePosts } from 'features/PostList/model/hooks/usePost';
 
-interface FeedPageProps {
+interface PostsPageProps {
 	className?: string;
 }
 
 const PostListWithLoading = withLoading(PostList);
 
-export const FeedPage = ({ className }: FeedPageProps) => {
-	const [posts, setPosts] = useState<Post[]>([]);
-	const [loading, setLoading] = useState(true);
-	const originalPosts = useRef<Post[]>([]);
+export const PostsPage = ({ className }: PostsPageProps) => {
+	const { posts, loading, error } = usePosts();
+	const [postsState, setPostsState] = useState<Post[]>(posts);
+	const originalPosts = useRef<Post[]>(posts);
 
 	useEffect(() => {
-		setLoading(true);
-		fetchPostsMock().then((posts) => {
-			setPosts(posts);
-			originalPosts.current = posts;
-			setLoading(false);
-		});
-	}, []);
+		setPostsState(posts);
+		originalPosts.current = posts;
+	}, [posts]);
 
 	const handleSortedPosts = (sortedPosts: Post[]) => {
-		setPosts(sortedPosts);
+		setPostsState(sortedPosts);
 	};
 
 	return (
-		<div className={classNames(cls.FeedPage, {}, [className])}>
+		<div className={classNames(cls.PostsPage, {}, [className])}>
 			<MainLayout leftSidebar={<PostLengthFilter posts={posts} onSort={handleSortedPosts} />}>
-				<PostListWithLoading posts={posts} isLoading={loading} />
+				<PostListWithLoading posts={postsState} loading={loading} error={error} />
 			</MainLayout>
 		</div>
 	);
 };
-
-export default FeedPage;

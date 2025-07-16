@@ -32,7 +32,6 @@ export const PostLengthFilter = ({ className, posts, onSort }: PostLengthFilterP
 			sortedPosts = filterByLength(posts, 'asc', 'title');
 			newSortOrder = 'desc';
 		}
-		console.log(originalPosts.current);
 
 		setOrder(newSortOrder);
 		onSort(sortedPosts);

@@ -6,6 +6,7 @@ import CommentsIcon from 'shared/assets/icons/comments.svg';
 import cls from './PostCard.module.css';
 import fetchCommentsMock from 'app/commentsRequestMock';
 import type { PostComment } from 'entities/comment';
+import { Loader } from 'shared/ui/Loader/Loader';
 
 type PostCardProps = {
 	post: Post;
@@ -13,13 +14,15 @@ type PostCardProps = {
 
 export const PostCard = ({ post }: PostCardProps) => {
 	const [comments, setComments] = useState<PostComment[]>([]);
-	const [isLoading, setIsLoading] = useState(true);
+	const [loadingComment, setLoadingComment] = useState(true);
 	const [isShown, setIsShown] = useState(false);
+
+	const id = post.id.toString();
 
 	useEffect(() => {
 		fetchCommentsMock(post.id).then((res) => {
 			setComments(res);
-			setIsLoading(false);
+			setLoadingComment(false);
 		});
 	}, []);
 
@@ -31,7 +34,7 @@ export const PostCard = ({ post }: PostCardProps) => {
 		<article className={cls.PostCard}>
 			<header>
 				<h3>
-					<a href={`/posts/${post.id.toString()}`} className={cls.postTitle}>
+					<a href={`/posts/${id}`} className={cls.postTitle}>
 						{post.title}
 					</a>
 				</h3>
@@ -43,9 +46,9 @@ export const PostCard = ({ post }: PostCardProps) => {
 				className={cls.commentsBtn}
 			>
 				<CommentsIcon />
-				{!isLoading && comments.length}
+				{!loadingComment && comments.length}
 			</Button>
-			<CommentList comments={comments} isLoading={isLoading} isShown={isShown} />
+			<CommentList comments={comments} loading={loadingComment} isShown={isShown} />
 		</article>
 	);
 };

@@ -1,7 +1,6 @@
-import FeedPage from 'pages/FeedPage/ui/FeedPage';
-
+import { AppRouter } from './providers/router/AppRouter';
 function App() {
-	return <FeedPage />;
+	return <AppRouter />;
 }
 
 export default App;

@@ -5,16 +5,16 @@ import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 
 type CommentListProps = {
 	comments: PostComment[];
-	isLoading: boolean;
+	loading: boolean;
 	isShown: boolean;
 };
 
-export const CommentList = ({ comments, isLoading, isShown }: CommentListProps) => {
+export const CommentList = ({ comments, loading, isShown }: CommentListProps) => {
 	if (!isShown) {
 		return null;
 	}
 
-	if (isLoading) {
+	if (loading) {
 		return (
 			<div className={cls.CommentList}>
 				<Skeleton width='10rem' height='1rem' />
