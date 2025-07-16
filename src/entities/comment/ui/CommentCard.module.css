@@ -1,0 +1,13 @@
+.CommentCard {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 1rem;
+	/* background-color: var(--accent); */
+}
+
+.commentName {
+	color: var(--chart-2);
+}

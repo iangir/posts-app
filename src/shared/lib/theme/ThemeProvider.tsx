@@ -10,15 +10,16 @@ type ThemeProviderProps = {
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
 	const [theme, setTheme] = useState<Theme>(defaultTheme);
 
-	const defaultProps = useMemo(
-		() => ({
-			theme,
-			setTheme,
-		}),
-		[theme]
+	return (
+		<ThemeContext
+			value={{
+				theme,
+				setTheme,
+			}}
+		>
+			{children}
+		</ThemeContext>
 	);
-
-	return <ThemeContext.Provider value={defaultProps}>{children}</ThemeContext.Provider>;
 };
 
 export default ThemeProvider;

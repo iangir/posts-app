@@ -1,6 +1,7 @@
 .layoutHeader {
 	color: var(--foreground);
 	width: 100%;
+	padding-inline: 0.5rem;
 	height: var(--navbar-height);
 	background-color: var(--background-transparent);
 	display: flex;
@@ -24,8 +25,6 @@
 .navbarList {
 	width: 100%;
 	list-style: none;
-	padding: 0;
-	margin: 0;
 	display: flex;
 	flex-direction: row;
 	align-items: center;

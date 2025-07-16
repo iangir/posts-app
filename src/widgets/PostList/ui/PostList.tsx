@@ -1,5 +1,6 @@
-import type { Post } from 'app/postsReqestMock';
+import type { Post } from 'entities/post';
 import { PostCard } from 'entities/post';
+import cls from './PostList.module.css';
 
 type PostListProps = {
 	posts: Post[];
@@ -7,7 +8,7 @@ type PostListProps = {
 
 export const PostList = ({ posts }: PostListProps) => {
 	return (
-		<div>
+		<div className={cls.PostList}>
 			{posts.map((post) => (
 				<PostCard key={post.id} post={post} />
 			))}
