@@ -1,18 +1,15 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import MainLayout from 'shared/layouts/MainLayout/MainLayout';
-import { withLoading } from 'shared/lib/hoc/withLodaing';
-import { PostList } from 'widgets/PostList';
+import { PostListWithLoading } from 'widgets/PostList';
 import { PostLengthFilter } from 'features/PostLentgthFilter';
 import { useEffect, useRef, useState } from 'react';
 import type { Post } from 'entities/post';
-import cls from './PostsPage.module.css';
 import { usePosts } from 'features/PostList/model/hooks/usePost';
+import cls from './PostsPage.module.css';
 
 interface PostsPageProps {
 	className?: string;
 }
-
-const PostListWithLoading = withLoading(PostList);
 
 export const PostsPage = ({ className }: PostsPageProps) => {
 	const { posts, loading, error } = usePosts();

@@ -11,13 +11,3 @@ export const filterByLength = <T extends Record<string, any>>(
 
 	return sortedArr;
 };
-
-// export const filterByLength = (posts: Post[], filter: string) => {
-// 	if (filter === 'max') {
-// 		return [...posts].sort((post1, post2) => post1.title.length - post2.title.length);
-// 	} else if (filter === 'min') {
-// 		return [...posts].sort((post1, post2) => post2.title.length - post1.title.length);
-// 	} else {
-// 		return posts;
-// 	}
-// };

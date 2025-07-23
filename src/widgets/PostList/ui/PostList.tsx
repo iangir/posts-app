@@ -15,7 +15,7 @@ export const PostList = ({ posts, loading, error }: PostListProps) => {
 	}
 
 	if (error) {
-		return <div>{error}</div>; // TODO: add error message
+		return <div>{error}</div>;
 	}
 
 	return (

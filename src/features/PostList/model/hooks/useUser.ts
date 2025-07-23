@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from 'shared/api/api';
 
-// Тип для данных пользователя
 export type Geo = {
 	lat: string;
 	lng: string;
