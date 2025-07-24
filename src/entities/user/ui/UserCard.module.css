@@ -1,0 +1,28 @@
+.UserCard {
+	width: 100%;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	background-color: var(--card);
+	color: var(--card-foreground);
+	padding: 1rem;
+
+	h2 {
+		text-align: center;
+		color: var(--chart-2);
+		margin-bottom: 0.5rem;
+	}
+
+	p {
+		margin-bottom: 0.5rem;
+	}
+
+	.address,
+	.company {
+		padding-left: 1rem;
+
+		h3 {
+			margin-top: 0;
+			color: var(--chart-4);
+		}
+	}
+}

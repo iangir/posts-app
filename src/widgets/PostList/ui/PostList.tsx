@@ -1,7 +1,7 @@
 import type { Post } from 'entities/post';
 import { PostCard } from 'entities/post';
-import cls from './PostList.module.css';
 import { Loader } from 'shared/ui/Loader/Loader';
+import cls from './PostList.module.css';
 
 type PostListProps = {
 	posts: Post[];

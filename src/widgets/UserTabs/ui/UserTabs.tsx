@@ -1,9 +1,9 @@
 import { NavLink, useParams } from 'react-router-dom';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { RoutePath } from 'shared/config/routes/routes';
 import cls from './UserTabs.module.css';
 
 export const UserTabs = () => {
-	const { id } = useParams<{ id: string }>();
+	const { id } = useParams();
 
 	if (!id) return null;
 

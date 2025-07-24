@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useRef, useState, createContext, useContext } from 'react';
 import type { ReactNode } from 'react';
+import { createContext, useCallback, useEffect, useRef, useState } from 'react';
 import { Portal } from 'shared/lib/Portal/Portal';
-import { classNames } from 'shared/lib/classNames/classNames';
 import type { Mods } from 'shared/lib/classNames/classNames';
-import { Button, ButtonColorEnum, ButtonThemeEnum } from '../Button/Button';
-import Cross from 'shared/assets/icons/cross.svg';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Modal.module.css';
+import { ModalBody } from './ModalBody/ModalBody';
+import { ModalFooter } from './ModalFooter/ModalFooter';
+import { ModalHeader } from './ModalHeader/ModalHeader';
 
 export type ModalProps = {
 	className?: string;
@@ -14,13 +15,9 @@ export type ModalProps = {
 	onClose?: () => void;
 };
 
-type ModalHeaderProps = {
-	closeButton?: boolean;
-} & React.PropsWithChildren;
-
 const ANIMATION_DELAY = 200;
 
-const ModalContext = createContext({ onClose: () => {} });
+export const ModalContext = createContext({ onClose: () => {} });
 
 const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
 	const [isClosing, setIsClosing] = useState(false);
@@ -81,33 +78,6 @@ const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
 			</ModalContext>
 		</Portal>
 	);
-};
-
-const ModalHeader = ({ children, closeButton }: ModalHeaderProps) => {
-	const { onClose } = useContext(ModalContext);
-	return (
-		<div className={cls.header}>
-			<h2 className={cls.headerTitle}>{children}</h2>
-			{closeButton && (
-				<Button
-					theme={ButtonThemeEnum.ICON}
-					color={ButtonColorEnum.RED}
-					onClick={onClose}
-					className={cls.closeButton}
-				>
-					<Cross />
-				</Button>
-			)}
-		</div>
-	);
-};
-
-const ModalBody = ({ children }: React.PropsWithChildren) => {
-	return <div className={cls.body}>{children}</div>;
-};
-
-const ModalFooter = ({ children }: React.PropsWithChildren) => {
-	return <div className={cls.footer}>{children}</div>;
 };
 
 Modal.Header = ModalHeader;

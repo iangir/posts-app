@@ -1,9 +1,11 @@
 import { ThemeSwitcher } from 'features/ThemeSwitcher';
-import cls from './LayoutHeader.module.css';
-import { useState, useCallback, Fragment, lazy, Suspense } from 'react';
+import { Fragment, lazy, Suspense, useCallback, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routes/routes';
 import { Button, ButtonThemeEnum } from 'shared/ui/Button/Button';
 import { Loader } from 'shared/ui/Loader/Loader';
 import Modal from 'shared/ui/Modal/Modal';
+import cls from './LayoutHeader.module.css';
 
 const AboutModal = lazy(() =>
 	import('widgets/AboutModal/ui/AboutModal').then((module) => ({ default: module.AboutModal }))
@@ -24,7 +26,15 @@ export const LayoutHeader = () => {
 		<Fragment>
 			<header className={cls.layoutHeader}>
 				<nav className={cls.navbarContainer}>
-					<a href='#'>Logo</a>
+					<NavLink to={RoutePath.main} className={cls.navLink}>
+						Logo
+					</NavLink>
+					<NavLink to={RoutePath.posts} className={cls.navLink}>
+						Posts
+					</NavLink>
+					<NavLink to={RoutePath.users} className={cls.navLink}>
+						Users
+					</NavLink>
 					<ul className={cls.navbarList}>
 						<li>
 							<ThemeSwitcher />

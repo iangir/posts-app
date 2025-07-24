@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routes/routes';
 import type { PostComment } from '../model/types/comment';
 import cls from './CommentCard.module.css';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 type CommentProps = {
 	comment: PostComment;
@@ -13,7 +13,10 @@ export const Comment = ({ comment }: CommentProps) => {
 
 	return (
 		<div className={cls.CommentCard}>
-			<Link to={RoutePath.user.replace(':id', userId.toString())} className={cls.commentName}>
+			<Link
+				to={RoutePath.user_details.replace(':id', userId.toString())}
+				className={cls.commentName}
+			>
 				{username}
 			</Link>
 			<p className={cls.commentBody}>{comment.body}</p>
