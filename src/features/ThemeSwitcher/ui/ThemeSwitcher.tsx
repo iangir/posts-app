@@ -5,7 +5,6 @@ import { Theme } from 'shared/lib/theme/ThemeContext';
 import { Button, ButtonThemeEnum } from 'shared/ui/Button/Button';
 import LightIcon from 'shared/assets/icons/sunIcon.svg';
 import DarkIcon from 'shared/assets/icons/moonIcon.svg';
-import cls from './ThemeSwitcher.module.css';
 
 export const ThemeSwitcher = () => {
 	const { theme, toggleTheme } = useTheme();
@@ -57,7 +56,6 @@ export const ThemeSwitcher = () => {
 			onClick={toggleAnimationMode}
 			theme={ButtonThemeEnum.ICON}
 			ref={ref}
-			className={cls.ThemeSwitcher}
 			title={`Change to ${theme === Theme.LIGHT ? 'dark' : 'light'} theme`}
 		>
 			{theme === Theme.LIGHT ? <LightIcon /> : <DarkIcon />}

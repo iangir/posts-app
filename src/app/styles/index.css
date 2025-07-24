@@ -34,6 +34,7 @@ a {
 	color: var(--foreground);
 	text-decoration: inherit;
 	transition: color var(--transition);
+	cursor: pointer;
 }
 
 a:hover {

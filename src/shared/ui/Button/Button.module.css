@@ -8,6 +8,10 @@
 	white-space: nowrap;
 	cursor: pointer;
 
+	svg {
+		width: 24px;
+	}
+
 	transition:
 		transform var(--transition),
 		background-color var(--transition);
