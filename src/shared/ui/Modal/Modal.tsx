@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react';
-import { createContext, useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Portal } from 'shared/lib/Portal/Portal';
 import type { Mods } from 'shared/lib/classNames/classNames';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Modal.module.css';
 import { ModalBody } from './ModalBody/ModalBody';
+import { ModalContext } from './ModalContext';
 import { ModalFooter } from './ModalFooter/ModalFooter';
 import { ModalHeader } from './ModalHeader/ModalHeader';
 
@@ -16,8 +17,6 @@ export type ModalProps = {
 };
 
 const ANIMATION_DELAY = 200;
-
-export const ModalContext = createContext({ onClose: () => {} });
 
 const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
 	const [isClosing, setIsClosing] = useState(false);

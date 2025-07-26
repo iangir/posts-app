@@ -17,14 +17,16 @@ export const PostCard = ({ post }: PostCardProps) => {
 
 	useEffect(() => {
 		setLoadingComment(true);
-		fetch(`https://jsonplaceholder.typicode.com/comments?postId=${post.id}`)
+		fetch(`https://jsonplaceholder.typicode.com/comments`)
 			.then((response) => response.json())
-			.then((json) => setComments(json))
+			.then((json) =>
+				setComments(json.filter((comment: PostComment) => comment.postId === post.id))
+			)
 			.catch((err) => {
 				console.log(err instanceof Error ? err.message : 'Failed to fetch comments');
 			})
 			.finally(() => setLoadingComment(false));
-	}, []);
+	}, [post.id]);
 
 	const commentBtnHandler = () => {
 		setIsShown(!isShown);

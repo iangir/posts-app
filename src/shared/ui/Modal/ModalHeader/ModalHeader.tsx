@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Cross from 'shared/assets/icons/cross.svg';
 import { Button, ButtonColorEnum, ButtonThemeEnum } from '../../Button/Button';
-import { ModalContext } from '../Modal';
+import { ModalContext } from '../ModalContext';
 import cls from './ModalHeader.module.css';
 
 type ModalHeaderProps = {

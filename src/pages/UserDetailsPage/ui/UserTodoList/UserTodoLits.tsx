@@ -26,7 +26,7 @@ export const UserTodoList = () => {
 			.finally(() => {
 				setLoading(false);
 			});
-	}, []);
+	}, [id]);
 
 	if (loading) {
 		return <Loader />;

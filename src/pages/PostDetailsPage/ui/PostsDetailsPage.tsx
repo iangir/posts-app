@@ -24,7 +24,7 @@ export const PostDetailsPage = () => {
 		};
 
 		fetchPost();
-	}, []);
+	}, [id]);
 
 	if (loading) {
 		return <Loader />;
