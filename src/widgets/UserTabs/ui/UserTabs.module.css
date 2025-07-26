@@ -1,28 +1,25 @@
 .tabs {
 	display: flex;
-	flex-direction: column;
 	gap: 1rem;
 	width: 100%;
+	justify-content: center;
+	background-color: var(--accent);
 }
 
 .tab {
-	padding: 0.5rem 16px;
+	padding: 0.5rem 1rem;
 	text-decoration: none;
 	color: var(--card-foreground);
 	border-radius: var(--radius);
 	text-align: center;
 
 	&:hover {
-		background-color: var(--accent);
 		transition: background-color var(--transition);
 	}
 }
 
-.active {
-	background-color: var(--chart-2);
-	color: var(--primary);
-
-	&:hover {
-		background-color: var(--chart-5);
-	}
+.active,
+.active:hover {
+	background-color: var(--primary);
+	color: var(--primary-foreground);
 }

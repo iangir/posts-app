@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react';
-import type { Post } from 'entities/post';
-import { CommentList } from 'widgets/CommentList';
-import { Button, ButtonThemeEnum } from 'shared/ui/Button/Button';
-import CommentsIcon from 'shared/assets/icons/comments.svg';
-import cls from './PostCard.module.css';
-import fetchCommentsMock from 'app/commentsRequestMock';
 import type { PostComment } from 'entities/comment';
-import { Loader } from 'shared/ui/Loader/Loader';
+import type { Post } from 'entities/post';
+import { useEffect, useState } from 'react';
+import CommentsIcon from 'shared/assets/icons/comments.svg';
+import { Button, ButtonThemeEnum } from 'shared/ui/Button/Button';
+import { CommentList } from 'widgets/CommentList';
+import cls from './PostCard.module.css';
 
 type PostCardProps = {
 	post: Post;
@@ -17,14 +15,18 @@ export const PostCard = ({ post }: PostCardProps) => {
 	const [loadingComment, setLoadingComment] = useState(true);
 	const [isShown, setIsShown] = useState(false);
 
-	const id = post.id.toString();
-
 	useEffect(() => {
-		fetchCommentsMock(post.id).then((res) => {
-			setComments(res);
-			setLoadingComment(false);
-		});
-	}, []);
+		setLoadingComment(true);
+		fetch(`https://jsonplaceholder.typicode.com/comments`)
+			.then((response) => response.json())
+			.then((json) =>
+				setComments(json.filter((comment: PostComment) => comment.postId === post.id))
+			)
+			.catch((err) => {
+				console.log(err instanceof Error ? err.message : 'Failed to fetch comments');
+			})
+			.finally(() => setLoadingComment(false));
+	}, [post.id]);
 
 	const commentBtnHandler = () => {
 		setIsShown(!isShown);
@@ -34,7 +36,7 @@ export const PostCard = ({ post }: PostCardProps) => {
 		<article className={cls.PostCard}>
 			<header>
 				<h3>
-					<a href={`/posts/${id}`} className={cls.postTitle}>
+					<a href={`/posts/${post.id}`} className={cls.postTitle}>
 						{post.title}
 					</a>
 				</h3>

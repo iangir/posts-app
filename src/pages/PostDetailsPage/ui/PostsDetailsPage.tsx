@@ -2,19 +2,16 @@ import { PostCard, type Post } from 'entities/post';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { api } from 'shared/api/api';
-import MainLayout from 'shared/layouts/MainLayout/MainLayout';
 import { Loader } from 'shared/ui/Loader/Loader';
+import cls from './PostsDetailsPage.module.css';
 
-type PostDetailsPageProps = {
-	className?: string;
-};
-
-export const PostDetailsPage = ({ className }: PostDetailsPageProps) => {
+export const PostDetailsPage = () => {
 	const { id } = useParams();
 	const [post, setPost] = useState<Post | null>(null);
 	const [loading, setLoading] = useState(false);
+
 	useEffect(() => {
-		const fetchPosts = async () => {
+		const fetchPost = async () => {
 			try {
 				const data = await api.get<Post>(`/posts/${id}`);
 				setPost(data);
@@ -26,8 +23,8 @@ export const PostDetailsPage = ({ className }: PostDetailsPageProps) => {
 			}
 		};
 
-		fetchPosts();
-	}, []);
+		fetchPost();
+	}, [id]);
 
 	if (loading) {
 		return <Loader />;
@@ -38,8 +35,8 @@ export const PostDetailsPage = ({ className }: PostDetailsPageProps) => {
 	}
 
 	return (
-		<MainLayout>
+		<div className={cls.PostDetailsPage}>
 			<PostCard post={post} />
-		</MainLayout>
+		</div>
 	);
 };

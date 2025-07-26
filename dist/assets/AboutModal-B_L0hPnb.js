@@ -1,0 +1,1 @@
+import{j as o,M as s}from"./index-e_ncepBd.js";const r="_AboutModal_6xv2y_1",c={AboutModal:r},a=({isOpen:t,onClose:e})=>o.jsxs(s,{className:c.AboutModal,isOpen:t,onClose:e,children:[o.jsx(s.Header,{closeButton:!0,children:"О проекте"}),o.jsx(s.Body,{children:o.jsx("p",{children:"Aston React course project, version 0.1"})})]});export{a as AboutModal};
