@@ -1,8 +1,7 @@
 import type { Post } from 'entities/post';
 import { useEffect, useState } from 'react';
-import { api } from 'shared/api/api';
 
-export const usePosts = (userId?: string) => {
+export const usePosts = () => {
 	const [posts, setPosts] = useState<Post[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | undefined>(undefined);
@@ -11,9 +10,8 @@ export const usePosts = (userId?: string) => {
 		const fetchPosts = async () => {
 			try {
 				const url = '/posts';
-				const params = userId ? { userId } : undefined;
 
-				const data = await api.get<Post[]>(url, params);
+				const data = await fetch(url, { method: 'GET' }).then((res) => res.json());
 				setPosts(data);
 			} catch (err) {
 				setError(err instanceof Error ? err.message : 'Failed to fetch posts');
@@ -23,7 +21,7 @@ export const usePosts = (userId?: string) => {
 		};
 
 		fetchPosts();
-	}, [userId]);
+	}, []);
 
 	return { posts, loading, error };
 };

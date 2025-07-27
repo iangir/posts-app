@@ -1,7 +1,8 @@
+import { TodoItem } from 'entities/todo';
 import { useGetTodosByUserIdQuery } from 'entities/todo/model/api/todosApi';
 import { useParams } from 'react-router-dom';
+import { ItemList } from 'shared/ui/ItemList/ItemList';
 import { Loader } from 'shared/ui/Loader/Loader';
-import { TodoList } from 'widgets/TodoList';
 import cls from './UserTodoList.module.css';
 
 export const UserTodoList = () => {
@@ -28,7 +29,7 @@ export const UserTodoList = () => {
 			<span className={cls.info}>
 				Todos: {total} | Completed: {completed} | Left: {todosLeft}
 			</span>
-			<TodoList todos={todos} />
+			<ItemList items={todos} renderItem={(todo) => <TodoItem key={todo.id} todo={todo} />} />
 		</div>
 	);
 };
