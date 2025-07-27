@@ -1,6 +1,6 @@
-import type { PostComment } from 'entities/comment';
+import { useGetCommentsByPostIdQuery } from 'entities/comment/model/api/commentsApi';
 import type { Post } from 'entities/post';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CommentsIcon from 'shared/assets/icons/comments.svg';
 import { Button, ButtonThemeEnum } from 'shared/ui/Button/Button';
 import { CommentList } from 'widgets/CommentList';
@@ -11,22 +11,11 @@ type PostCardProps = {
 };
 
 export const PostCard = ({ post }: PostCardProps) => {
-	const [comments, setComments] = useState<PostComment[]>([]);
-	const [loadingComment, setLoadingComment] = useState(true);
 	const [isShown, setIsShown] = useState(false);
 
-	useEffect(() => {
-		setLoadingComment(true);
-		fetch(`https://jsonplaceholder.typicode.com/comments`)
-			.then((response) => response.json())
-			.then((json) =>
-				setComments(json.filter((comment: PostComment) => comment.postId === post.id))
-			)
-			.catch((err) => {
-				console.log(err instanceof Error ? err.message : 'Failed to fetch comments');
-			})
-			.finally(() => setLoadingComment(false));
-	}, [post.id]);
+	const { data: comments, isLoading: loadingComment } = useGetCommentsByPostIdQuery(post.id);
+
+	if (!comments) return null;
 
 	const commentBtnHandler = () => {
 		setIsShown(!isShown);

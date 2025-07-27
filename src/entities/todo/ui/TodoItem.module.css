@@ -1,0 +1,14 @@
+.TodoItem {
+	list-style: none;
+
+	.checkbox {
+		width: 1rem;
+		height: 1rem;
+		accent-color: var(--primary);
+		margin-right: 0.5rem;
+	}
+
+	.title {
+		color: var(--card-foreground);
+	}
+}

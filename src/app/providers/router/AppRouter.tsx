@@ -1,9 +1,7 @@
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { PostDetailsPage } from 'pages/PostDetailsPage';
 import { PostsPage } from 'pages/PostsPage';
-import { UserDetailsPage, UserTodoList } from 'pages/UserDetailsPage';
-import { UserAlbumList } from 'pages/UserDetailsPage/ui/UserAlbumList/UserAlbumList';
-import { UserPostList } from 'pages/UserDetailsPage/ui/UserPostList/UserPostList';
+import { UserAlbumList, UserDetailsPage, UserPostList, UserTodoList } from 'pages/UserDetailsPage';
 import { UsersPage } from 'pages/UsersPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routes/routes';

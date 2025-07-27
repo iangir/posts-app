@@ -1,10 +1,15 @@
-import { usePosts } from 'features/PostList/model/hooks/usePosts';
+import { useGetPostsByUserIdQuery } from 'entities/post/model/api/postsApi';
 import { useParams } from 'react-router-dom';
-import { PostList } from 'widgets/PostList';
+import { PostsList } from 'widgets/PostsList';
 
 export const UserPostList = () => {
 	const { id } = useParams();
-	const { posts, loading, error } = usePosts(id);
 
-	return <PostList posts={posts} loading={loading} error={error} />;
+	const { data: posts, isLoading: loading, error } = useGetPostsByUserIdQuery(id ?? '1');
+
+	if (!posts) return null;
+
+	return (
+		<PostsList posts={posts} loading={loading} error={error && 'Не удалось загрузить посты'} />
+	);
 };

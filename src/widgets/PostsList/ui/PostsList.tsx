@@ -1,15 +1,15 @@
 import type { Post } from 'entities/post';
 import { PostCard } from 'entities/post';
 import { Loader } from 'shared/ui/Loader/Loader';
-import cls from './PostList.module.css';
+import cls from './PostsList.module.css';
 
-type PostListProps = {
+type PostsListProps = {
 	posts: Post[];
 	loading: boolean;
-	error: string | null;
+	error: string | undefined;
 };
 
-export const PostList = ({ posts, loading, error }: PostListProps) => {
+export const PostsList = ({ posts, loading, error }: PostsListProps) => {
 	if (loading) {
 		return <Loader />;
 	}

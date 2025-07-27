@@ -5,7 +5,7 @@ import { api } from 'shared/api/api';
 export const usePosts = (userId?: string) => {
 	const [posts, setPosts] = useState<Post[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<string | null>(null);
+	const [error, setError] = useState<string | undefined>(undefined);
 
 	useEffect(() => {
 		const fetchPosts = async () => {

@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
-import { Button, ButtonThemeEnum } from 'shared/ui/Button/Button';
-import Arrow from 'shared/assets/icons/arrowUp.svg';
-import cls from './PostLengthFilter.module.css';
-import { classNames } from 'shared/lib/classNames/classNames';
 import type { Post } from 'entities/post';
+import { useEffect, useState } from 'react';
+import Arrow from 'shared/assets/icons/arrowUp.svg';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Button, ButtonThemeEnum } from 'shared/ui/Button/Button';
 import { filterByLength } from '../lib/filterByLength';
+import cls from './PostLengthFilter.module.css';
 
 type PostLengthFilterProps = {
 	className?: string;
@@ -15,10 +15,8 @@ type PostLengthFilterProps = {
 export const PostLengthFilter = ({ className, posts, onSort }: PostLengthFilterProps) => {
 	const [order, setOrder] = useState<'asc' | 'desc' | null>(null);
 
-	const originalPosts = useRef<Post[]>(posts);
-
 	useEffect(() => {
-		if (order === null) originalPosts.current = posts;
+		if (order === null) onSort(posts);
 	}, [posts]);
 
 	const handleSort = () => {
@@ -39,15 +37,15 @@ export const PostLengthFilter = ({ className, posts, onSort }: PostLengthFilterP
 
 	const handleReset = () => {
 		setOrder(null);
-		onSort(originalPosts.current);
+		onSort(posts);
 	};
 
 	return (
-		<>
+		<div className={cls.PostLengthFilter}>
 			<Button
 				theme={ButtonThemeEnum.CLEAR}
 				className={classNames(
-					cls.PostLengthFilter,
+					cls.flterBtn,
 					{
 						[cls.active]: !!order,
 						[cls.arrowDown]: order === 'desc',
@@ -61,11 +59,11 @@ export const PostLengthFilter = ({ className, posts, onSort }: PostLengthFilterP
 			</Button>
 			<Button
 				theme={ButtonThemeEnum.CLEAR}
-				className={classNames(cls.PostLengthFilter, {}, [className])}
+				className={classNames(cls.resetBtn, {}, [className])}
 				onClick={handleReset}
 			>
 				Reset
 			</Button>
-		</>
+		</div>
 	);
 };
