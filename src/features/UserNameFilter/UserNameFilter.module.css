@@ -1,0 +1,19 @@
+.UserNameFilter {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.filterInput {
+	width: 100%;
+	max-width: 200px;
+	max-height: 3rem;
+	background-color: var(--card);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 0.5rem;
+	color: var(--card-foreground);
+	&::placeholder {
+		color: var(--muted-foreground);
+	}
+}

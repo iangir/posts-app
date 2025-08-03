@@ -6,5 +6,15 @@ type PhotoCardProps = {
 };
 
 export const PhotoCard = ({ photo }: PhotoCardProps) => {
-	return <img src={photo.url} alt={photo.title} className={cls.photo} loading='lazy' />;
+	return (
+		<figure className={cls.PhotoCard}>
+			<img
+				src={`https://dummyjson.com/icon/${photo.title}/150`}
+				title={photo.title}
+				alt={photo.title}
+				className={cls.photo}
+				loading='lazy'
+			/>
+		</figure>
+	);
 };

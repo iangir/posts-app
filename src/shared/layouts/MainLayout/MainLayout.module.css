@@ -15,7 +15,6 @@
 	grid-area: 1 / 2 / 2 / 6;
 	display: flex;
 	justify-content: center;
-	align-items: center;
 	margin-inline: auto;
 	min-height: calc(100vh - var(--navbar-height) * 2);
 	width: 100%;

@@ -12,7 +12,7 @@ export const PhotoList = () => {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`https://jsonplaceholder.typicode.com/albums?userId=${id}`)
+		fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`)
 			.then((response) => response.json())
 			.then((json) => setPhotos(json))
 			.catch((err) => {
@@ -28,7 +28,7 @@ export const PhotoList = () => {
 	}
 
 	return (
-		<div className={cls.CommentList}>
+		<div className={cls.PhotoList}>
 			{photos.map((photo) => (
 				<PhotoCard key={photo.id} photo={photo} />
 			))}
