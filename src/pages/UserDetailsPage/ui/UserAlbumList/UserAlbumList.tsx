@@ -1,35 +1,23 @@
-import type { Album } from 'entities/album';
-import { useEffect, useState } from 'react';
+import { skipToken } from '@reduxjs/toolkit/query';
+import { useGetAlbumsByUserIdQuery } from 'entities/album/model/api/albumsApi';
 import { useParams } from 'react-router-dom';
-import { Loader } from 'shared/ui/Loader/Loader';
 import { AlbumList } from 'widgets/AlbumList';
 import cls from './UserAlbumList.module.css';
 
 export const UserAlbumList = () => {
 	const { id } = useParams();
-	const [albums, setAlbums] = useState<Album[]>([]);
-	const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		setLoading(true);
-		fetch(`https://jsonplaceholder.typicode.com/albums?userId=${id}`)
-			.then((response) => response.json())
-			.then((json) => setAlbums(json))
-			.catch((err) => {
-				console.log(err instanceof Error ? err.message : 'Failed to fetch todos');
-			})
-			.finally(() => {
-				setLoading(false);
-			});
-	}, []);
+	const { data: albums, isLoading, error } = useGetAlbumsByUserIdQuery(id ?? skipToken);
 
-	if (loading) {
-		return <Loader />;
-	}
+	if (!albums) return null;
 
 	return (
 		<div className={cls.UserAlbumList}>
-			<AlbumList albums={albums} />
+			<AlbumList
+				albums={albums}
+				loading={isLoading}
+				error={error && 'Не удалось загрузить альбомы'}
+			/>
 		</div>
 	);
 };

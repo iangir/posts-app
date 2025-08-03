@@ -1,14 +1,9 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-export const api = {
-	get: async <T>(url: string, params?: Record<string, string | number>): Promise<T> => {
-		const query = params ? `?${new URLSearchParams(params as Record<string, string>)}` : '';
-		const response = await fetch(`${BASE_URL}${url}${query}`);
-
-		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`);
-		}
-
-		return response.json();
-	},
-};
+export const baseApi = createApi({
+	tagTypes: ['Post', 'User', 'Album', 'Comment', 'Todo'],
+	baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+	endpoints: () => ({}),
+});

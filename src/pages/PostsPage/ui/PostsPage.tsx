@@ -1,22 +1,28 @@
 import type { Post } from 'entities/post';
-import { usePosts } from 'features/PostList/model/hooks/usePosts';
-import { useEffect, useRef, useState } from 'react';
-import { PostListWithLoading } from 'widgets/PostList';
+import { useGetPostsQuery } from 'entities/post/model/api/postsApi';
+import { PostLengthFilter } from 'features/PostLentgthFilter';
+import { useState } from 'react';
+import { PostsListWithLoading } from 'widgets/PostsList';
 import cls from './PostsPage.module.css';
 
 export const PostsPage = () => {
-	const { posts, loading, error } = usePosts();
-	const [postsState, setPostsState] = useState<Post[]>(posts);
-	const originalPosts = useRef<Post[]>(posts);
+	const { data, isLoading: loading, error } = useGetPostsQuery();
+	const [posts, setPosts] = useState<Post[]>(data || []);
 
-	useEffect(() => {
-		setPostsState(posts);
-		originalPosts.current = posts;
-	}, [posts]);
+	if (!data) return null;
+
+	const handleSort = (posts: Post[]) => {
+		setPosts(posts);
+	};
 
 	return (
 		<div className={cls.PostsPage}>
-			<PostListWithLoading posts={postsState} loading={loading} error={error} />
+			<PostLengthFilter posts={data} onSort={handleSort} />
+			<PostsListWithLoading
+				posts={posts}
+				loading={loading}
+				error={error && 'Произошла ошибка'}
+			/>
 		</div>
 	);
 };

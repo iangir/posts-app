@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import { flushSync } from 'react-dom';
-import useTheme from 'shared/lib/theme/useTheme';
-import { Theme } from 'shared/lib/theme/ThemeContext';
-import { Button, ButtonThemeEnum } from 'shared/ui/Button/Button';
-import LightIcon from 'shared/assets/icons/sunIcon.svg';
 import DarkIcon from 'shared/assets/icons/moonIcon.svg';
+import LightIcon from 'shared/assets/icons/sunIcon.svg';
+import { Theme } from 'shared/lib/theme/ThemeContext';
+import useTheme from 'shared/lib/theme/useTheme';
+import { Button, ButtonThemeEnum } from 'shared/ui/Button/Button';
 
 export const ThemeSwitcher = () => {
 	const { theme, toggleTheme } = useTheme();

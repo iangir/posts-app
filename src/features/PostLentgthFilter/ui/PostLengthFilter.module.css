@@ -1,4 +1,11 @@
 .PostLengthFilter {
+	padding-bottom: 0.5rem;
+	display: flex;
+	gap: 1rem;
+	justify-content: right;
+}
+
+.flterBtn {
 	display: flex;
 	gap: 0.25rem;
 }
